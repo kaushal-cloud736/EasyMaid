@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const Header = () => {
     return (
         <header className="fixed top-0 w-full  
-      bg-background/80 backdrop-blur-md z-10 
+      bg-background/80  z-10 
       supports-[backdrop-filter]:bg-background/60">
 
             <nav className="container mx-auto h-16 px-4 flex items-center justify-between">
@@ -73,11 +73,11 @@ const Header = () => {
                         <UserButton
                             appearance={{
                                 elements: {
-                                  avatarBox: "w-10 h-10",
-                                  userButtonPopoverCard: "shadow-xl",
-                                  userPreviewMainIdentifier: "font-semibold",                            
+                                    avatarBox: "w-10 h-10",
+                                    userButtonPopoverCard: "shadow-xl",
+                                    userPreviewMainIdentifier: "font-semibold",
                                 },
-                              }} />
+                            }} />
                     </SignedIn>
                 </div>
             </nav>
