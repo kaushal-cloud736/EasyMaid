@@ -119,49 +119,72 @@ export default function Home() {
       </section>
 
       {/* Why Choose EasyMaid Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Why Choose EasyMaid
-          </h2>
-          <p className="text-center text-gray-700 mb-12">
-            Trusted, reliable, and professional maid services at your doorstep.
-          </p>
+      <section className="py-28 relative overflow-hidden">
+        {/* Soft glowing background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f5ebe0] via-[#e6ccb2]/40 to-[#f5ebe0]"></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              return (
-                <Card
-                  key={index}
+        <div className="relative container mx-auto px-6">
+          {/* Heading */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+              Why Choose EasyMaid
+            </h2>
+            <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+              Trusted, reliable, and professional maid services at your doorstep.
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="
+            group
+            bg-white/80
+            backdrop-blur-lg
+            border border-white/60
+            rounded-3xl
+            p-8
+            shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+            transition-all duration-400
+            hover:-translate-y-1
+            hover:shadow-[0_30px_80px_rgba(0,0,0,0.18)]
+          "
+              >
+                {/* Icon */}
+                <div
                   className="
-              bg-[#fdf8f3]
-              border border-[#e6ccb2]
+              w-14 h-14
+              flex items-center justify-center
+              rounded-xl
+              bg-emerald-100
+              mb-6
               shadow-sm
-              hover:shadow-lg
-              hover:-translate-y-1
               transition-all duration-300
+              group-hover:bg-emerald-500
             "
                 >
-                  <CardHeader className="pb-2">
-                    <div className="bg-emerald-100 p-3 rounded-lg w-fit mb-4">
-                      {feature.icon}
-                    </div>
-                    <CardTitle className="text-xl font-semibold text-gray-900">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
+                  <div className="text-emerald-500 group-hover:text-white">
+                    {feature.icon}
+                  </div>
+                </div>
 
-                  <CardContent>
-                    <p className="text-gray-600">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {feature.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
 
 
       <section id="pricing" className="py-20">
