@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { features } from "@/lib/data";
+import { creditBenefits, features } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge, Check, Stethoscope } from "lucide-react";
 
 export default function Home() {
   return (
@@ -161,67 +162,57 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
-      {/* Credit Packages Section */}
-      <section className="py-20">
+
+
+      <section id="pricing" className="py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Home Service Credits
-          </h2>
-          <p className="text-center text-gray-700 mb-12">
-            Buy credits and use them anytime for cleaning, cooking, or babysitting.
-          </p>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Home Service Credits
+            </h2>
+            <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+              Buy credits once and use them anytime for cleaning, cooking, or babysitting services.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Credit Info Card */}
+          <div className="max-w-4xl mx-auto">
+            <div
+              className="
+          bg-[#fdf8f3]
+          border border-[#e6ccb2]
+          rounded-2xl
+          p-8
+          shadow-sm
+          hover:shadow-lg
+          transition-all duration-300
+        "
+            >
+              <h3 className="text-xl font-semibold mb-6 flex items-center">
+                <span className="bg-emerald-100 p-2 rounded-lg mr-3">
+                  <Check className="h-5 w-5 text-emerald-500" />
+                </span>
+                How EasyMaid Credits Work
+              </h3>
 
-            {/* Basic */}
-            <div className="bg-white rounded-xl shadow-md p-8 text-center">
-              <h3 className="text-xl font-semibold mb-2">Basic</h3>
-              <p className="text-gray-600 mb-4">Perfect for occasional help</p>
-              <div className="text-3xl font-bold mb-6">₹199</div>
-              <ul className="text-gray-600 space-y-2 mb-6">
-                <li>✔ 4 Credits</li>
-                <li>✔ Use for any service</li>
-                <li>✔ No expiry for 30 days</li>
+              <ul className="space-y-4">
+                {creditBenefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start">
+                    <div className="mr-3 mt-1 bg-emerald-100 p-1 rounded-full">
+                      <Check className="h-4 w-4 text-emerald-500" />
+                    </div>
+                    <p
+                      className="text-gray-700"
+                      dangerouslySetInnerHTML={{ __html: benefit }}
+                    />
+                  </li>
+                ))}
               </ul>
-              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
-                Buy Credits
-              </button>
             </div>
-
-            {/* Standard */}
-            <div className="bg-white rounded-xl shadow-lg p-8 text-center border-2 border-emerald-500">
-              <h3 className="text-xl font-semibold mb-2">Standard</h3>
-              <p className="text-gray-600 mb-4">Most popular choice</p>
-              <div className="text-3xl font-bold mb-6">₹449</div>
-              <ul className="text-gray-600 space-y-2 mb-6">
-                <li>✔ 10 Credits</li>
-                <li>✔ Better value</li>
-                <li>✔ No expiry for 60 days</li>
-              </ul>
-              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
-                Buy Credits
-              </button>
-            </div>
-
-            {/* Premium */}
-            <div className="bg-white rounded-xl shadow-md p-8 text-center">
-              <h3 className="text-xl font-semibold mb-2">Premium</h3>
-              <p className="text-gray-600 mb-4">Best for families</p>
-              <div className="text-3xl font-bold mb-6">₹999</div>
-              <ul className="text-gray-600 space-y-2 mb-6">
-                <li>✔ 25 Credits</li>
-                <li>✔ Maximum savings</li>
-                <li>✔ No expiry for 90 days</li>
-              </ul>
-              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
-                Buy Credits
-              </button>
-            </div>
-
           </div>
         </div>
       </section>
+
 
 
     </main>
