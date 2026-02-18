@@ -16,7 +16,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/maid-hero4.jpg"
+            src="/maid-hero2 .jpg"
             alt="Maid"
             fill
             className="object-cover object-[right_25%]"
@@ -158,6 +158,67 @@ export default function Home() {
                 </Card>
               );
             })}
+          </div>
+        </div>
+      </section>
+      
+      {/* Credit Packages Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Home Service Credits
+          </h2>
+          <p className="text-center text-gray-700 mb-12">
+            Buy credits and use them anytime for cleaning, cooking, or babysitting.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {/* Basic */}
+            <div className="bg-white rounded-xl shadow-md p-8 text-center">
+              <h3 className="text-xl font-semibold mb-2">Basic</h3>
+              <p className="text-gray-600 mb-4">Perfect for occasional help</p>
+              <div className="text-3xl font-bold mb-6">₹199</div>
+              <ul className="text-gray-600 space-y-2 mb-6">
+                <li>✔ 4 Credits</li>
+                <li>✔ Use for any service</li>
+                <li>✔ No expiry for 30 days</li>
+              </ul>
+              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
+                Buy Credits
+              </button>
+            </div>
+
+            {/* Standard */}
+            <div className="bg-white rounded-xl shadow-lg p-8 text-center border-2 border-emerald-500">
+              <h3 className="text-xl font-semibold mb-2">Standard</h3>
+              <p className="text-gray-600 mb-4">Most popular choice</p>
+              <div className="text-3xl font-bold mb-6">₹449</div>
+              <ul className="text-gray-600 space-y-2 mb-6">
+                <li>✔ 10 Credits</li>
+                <li>✔ Better value</li>
+                <li>✔ No expiry for 60 days</li>
+              </ul>
+              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
+                Buy Credits
+              </button>
+            </div>
+
+            {/* Premium */}
+            <div className="bg-white rounded-xl shadow-md p-8 text-center">
+              <h3 className="text-xl font-semibold mb-2">Premium</h3>
+              <p className="text-gray-600 mb-4">Best for families</p>
+              <div className="text-3xl font-bold mb-6">₹999</div>
+              <ul className="text-gray-600 space-y-2 mb-6">
+                <li>✔ 25 Credits</li>
+                <li>✔ Maximum savings</li>
+                <li>✔ No expiry for 90 days</li>
+              </ul>
+              <button className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600">
+                Buy Credits
+              </button>
+            </div>
+
           </div>
         </div>
       </section>
