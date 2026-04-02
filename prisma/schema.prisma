@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  clerkUserId String   @unique
+  email       String   @unique // User's email address, unique
+  name        String? // User's, maid full name, optional
+  imageUrl    String? // URL to the user's, maid profile image
+  role        UserRole @default(UNASSIGNED)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  //user specific fields
+  credits Int @default(2) // User's credits, default to 2
+
+  // Maid-specific fields
+  serviceType        String?
+  experience         Int? // Years of experience
+  credentialUrl      String? // ID proof / document
+  description        String?             @db.Text
+  verificationStatus VerificationStatus? @default(PENDING)
+
+   // Reverse Relations
+   //Agar 2 relations ho (jaise customer + maid) Tab name dena padta hai
+  customerBookings  Booking[] @relation("CustomerBookings")
+  maidBookings      Booking[] @relation("MaidBookings")
+  availabilities    Availability[]
+  transactions      CreditTransaction[]
+  payouts           Payout[]
+}
+
+enum UserRole {
+  UNASSIGNED
+  USER
+  MAID
+  ADMIN
+}
+
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model Availability {
+  id        String   @id @default(uuid())
+  maidId    String
+  maid      User     @relation(fields: [maidId], references: [id], onDelete: Cascade)
+  startTime DateTime
+  endTime   DateTime
+  status    SlotStatus @default(AVAILABLE)
+  
+  @@index([maidId, startTime])
+}
+
+enum SlotStatus {
+  AVAILABLE
+  BOOKED
+  BLOCKED
+}
+
+
+model Booking {
+  id          String   @id @default(uuid())
+
+  customerId  String
+  customer    User     @relation("CustomerBookings", fields: [customerId], references: [id])
+
+  maidId      String
+  maid        User     @relation("MaidBookings", fields: [maidId], references: [id])
+
+  serviceType String
+  startTime   DateTime
+  endTime     DateTime
+  address     String
+  notes       String?
+
+  price       Float
+  platformFee Float
+  maidAmount  Float
+
+  status      BookingStatus @default(PENDING)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model CreditTransaction {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount    Int
+  type      TransactionType
+  packageId         String?
+  createdAt DateTime @default(now())
+}
+
+enum TransactionType {
+  CREDIT_PURCHASE
+  BOOKING_DEDUCTION
+  ADMIN_ADJUSTMENT
+}
+
+model Payout {
+  id            String        @id @default(uuid())
+  maidId        String
+  maid          User          @relation(fields: [maidId], references: [id], onDelete: Cascade)
+
+  amount        Float
+  platformFee   Float
+  netAmount     Float
+
+  upiId         String?
+  bankAccount   String?
+
+  status        PayoutStatus  @default(PROCESSING)
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  processedAt   DateTime?
+}
+
+enum PayoutStatus {
+  PROCESSING
+  PAID
+  FAILED
+}

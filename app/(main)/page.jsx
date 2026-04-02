@@ -6,6 +6,7 @@ import Link from "next/link";
 import { creditBenefits, features, testimonials } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge, Check, Stethoscope } from "lucide-react";
+import Pricing from "@/components/pricing";
 
 export default function Home() {
   return (
@@ -189,6 +190,7 @@ export default function Home() {
 
       <section id="pricing" className="py-20">
         <div className="container mx-auto px-6">
+
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Home Service Credits
@@ -198,34 +200,38 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Pricing Cards */}
+          <Pricing />
+
           {/* Credit Info Card */}
-          <div className="max-w-4xl mx-auto">
+          <div className="mt-16">
             <div
               className="
-          bg-[#fdf8f3]
-          border border-[#e6ccb2]
-          rounded-2xl
-          p-8
-          shadow-sm
-          hover:shadow-lg
-          transition-all duration-300
+        bg-gradient-to-br from-amber-50 to-orange-50
+        border border-amber-200
+        rounded-3xl
+        p-10
+        shadow-md
+        hover:shadow-xl
+        transition-all duration-300
         "
             >
-              <h3 className="text-xl font-semibold mb-6 flex items-center">
-                <span className="bg-emerald-100 p-2 rounded-lg mr-3">
-                  <Check className="h-5 w-5 text-emerald-500" />
+              <h3 className="text-2xl font-semibold mb-8 flex items-center">
+                <span className="bg-emerald-100 p-3 rounded-xl mr-4">
+                  <Check className="h-6 w-6 text-emerald-500" />
                 </span>
                 How EasyMaid Credits Work
               </h3>
 
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {creditBenefits.map((benefit, index) => (
                   <li key={index} className="flex items-start">
-                    <div className="mr-3 mt-1 bg-emerald-100 p-1 rounded-full">
+                    <div className="mr-4 mt-1 bg-emerald-100 p-2 rounded-full">
                       <Check className="h-4 w-4 text-emerald-500" />
                     </div>
+
                     <p
-                      className="text-gray-700"
+                      className="text-gray-700 text-lg leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: benefit }}
                     />
                   </li>
@@ -233,6 +239,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -295,7 +302,54 @@ export default function Home() {
       </section>
 
 
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
 
+          <div
+            className="
+      bg-[#fdf8f3]
+      border border-[#e6ccb2]
+      rounded-2xl
+      p-10 md:p-14
+      shadow-sm
+      hover:shadow-lg
+      transition-all duration-300
+      "
+          >
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                Find Trusted Maids for Your Home
+              </h2>
+
+              <p className="text-gray-700 text-lg mb-8">
+                EasyMaid helps you hire reliable maids for cleaning, cooking,
+                babysitting, and elderly care. Book quickly, safely, and
+                conveniently from your location.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  asChild
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl"
+                >
+                  <Link href="/sign-up">Sign up now</Link>
+                </Button>
+
+                <Button
+                  asChild
+                  className="px-6 py-3 rounded-xl bg-white text-gray-800 
+            hover:bg-gray-50 shadow-md border border-[#e6ccb2]"
+                >
+                  <Link href="/services">View Services</Link>
+                </Button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
 
     </main>
   );
